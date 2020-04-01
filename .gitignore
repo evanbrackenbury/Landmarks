@@ -40,8 +40,7 @@ sysinfo.txt
 Assets/StreamingAssets/crashlytics-build.properties
 
 # Don't pull proprietary assets from upstream
-Proprietary/
-proprietary/
+**/proprietary
 
 # don't pull data from editor or builds
 /data/
