@@ -41,9 +41,12 @@ Assets/StreamingAssets/crashlytics-build.properties
 
 # Don't pull proprietary assets from upstream
 Proprietary/
+proprietary/
 
 # don't pull data from editor or builds
 /data/
+data/tmp/*
+!data/tmp/.gitkeep
 
 # Don't pull any of Andrew's large files
 Assets/Materials/*./.git/objects/31/8b9f222a42cea1236e9a30406d4f88f45d94d3

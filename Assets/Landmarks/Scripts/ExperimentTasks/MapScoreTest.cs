@@ -6,6 +6,8 @@ using TMPro;
 
 public class MapScoreTest : ExperimentTask {
 
+    [Header("Task-specific Properties")]
+
     public GameObject copyObjects;
 
 	private GameObject targetObjects; // should be the game object called TargetObjects under Environment game object
@@ -19,7 +21,7 @@ public class MapScoreTest : ExperimentTask {
 	// FROM INSTRUCTIONS TASK
 	public TextAsset message;
 	public bool blackout = true;
-	private GUIText gui;
+	private Text gui;
 
 	void OnDisable ()
 	{
@@ -136,11 +138,11 @@ public class MapScoreTest : ExperimentTask {
         Text canvas = avatar.GetComponent<Text>();
         hud.SecondsToShow = hud.InstructionDuration;
 
-		sgo.AddComponent<GUIText>();
+		sgo.AddComponent<Text>();
 		sgo.hideFlags = HideFlags.HideAndDontSave;
 		sgo.transform.position = new Vector3(0,0,0);
-		gui = sgo.GetComponent<GUIText>();
-		gui.pixelOffset = new Vector2( 20, Screen.height - 20);
+		gui = sgo.GetComponent<Text>();
+		//gui.pixelOffset = new Vector2( 20, Screen.height - 20);
 		gui.text = message.text;
 
 		if (blackout) hud.showOnlyHUD();

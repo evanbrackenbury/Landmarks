@@ -22,7 +22,12 @@ using TMPro;
 
 public class InstructionsTask : ExperimentTask {
 
+
+    
+
     public static int instructionsCounter;
+
+    [Header("Task-specific Properties")]
 
     public TextAsset instruction;
     public TextAsset message;
@@ -41,7 +46,7 @@ public class InstructionsTask : ExperimentTask {
     public bool actionButtonOn = true;
     public string customButtonText = "";
 
-    private GUIText gui;
+    private Text gui;
 
     public bool restrictMovement = false; // MJS do we want to keep them still during this?
     public bool selfPaced = false; // can they press return to end the task?
@@ -64,12 +69,6 @@ public class InstructionsTask : ExperimentTask {
         if (!manager) Start();
         base.startTask();
 
-        Renderer[] renderedEnvironment = GameObject.FindGameObjectWithTag("Environment").GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in renderedEnvironment)
-        {
-            r.enabled = false;
-        }
-
         if (skip) {
             log.log("INFO    skip task    " + name,1 );
             return;
@@ -81,12 +80,11 @@ public class InstructionsTask : ExperimentTask {
         Text canvas = avatar.GetComponent<Text>();
         hud.SecondsToShow = hud.InstructionDuration;
 
-
-        sgo.AddComponent<GUIText>();
+        sgo.AddComponent<Text>();
         sgo.hideFlags = HideFlags.HideAndDontSave;
         sgo.transform.position = new Vector3(0,0,0);
-        gui = sgo.GetComponent<GUIText>();
-        gui.pixelOffset = new Vector2( 20, Screen.height - 20);
+        gui = sgo.GetComponent<Text>();
+        // DEPRICATED IN UNITY 2019 // gui.pixelOffset = new Vector2( 20, Screen.height - 20);
         gui.font = instructionFont;
         gui.fontSize = instructionSize;
         gui.material.color = text_color;
@@ -183,12 +181,6 @@ public class InstructionsTask : ExperimentTask {
 
     public override void TASK_END() {
         base.endTask ();
-
-        Renderer[] renderedEnvironment = GameObject.FindGameObjectWithTag("Environment").GetComponentsInChildren<Renderer>();
-        foreach (Renderer r in renderedEnvironment)
-        {
-            r.enabled = true;
-        }
 
         hud.setMessage ("");
         hud.SecondsToShow = hud.GeneralDuration;
